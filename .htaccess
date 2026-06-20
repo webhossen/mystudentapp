@@ -1,0 +1,39 @@
+# Security
+Options -Indexes
+ServerSignature Off
+
+# Security Headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Protect sensitive files
+<FilesMatch "\.(sql|env|md|log|phar)$">
+  Require all denied
+</FilesMatch>
+
+# Deny access to .env
+<Files ".env">
+  Require all denied
+</Files>
+
+# PHP settings
+<IfModule mod_php.c>
+  php_flag display_errors Off
+  php_flag log_errors On
+</IfModule>
+
+# Rewrite rules
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Serve sitemap.xml dynamically
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+  # Serve robots.txt from settings
+  RewriteRule ^robots\.txt$ robots.php [L]
+</IfModule>

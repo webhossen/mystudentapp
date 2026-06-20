@@ -1,0 +1,8 @@
+vendor/
+.env
+uploads/
+node_modules/
+.idea/
+*.log
+sms_logs/
+/.vscode/

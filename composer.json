@@ -1,0 +1,13 @@
+{
+  "name": "bd-fashion/digital-store",
+  "description": "Digital product selling website scaffold",
+  "require": {
+    "php": ">=7.4",
+    "phpmailer/phpmailer": "^7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
